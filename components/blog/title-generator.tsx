@@ -31,7 +31,7 @@ export function TitleGenerator({ blogData, setBlogData }: TitleGeneratorProps) {
     setLoading(true);
     try {
       const response = await fetch(
-        "http://localhost:5000/api/createBlog/generate-titles",
+        "https://aaas-labs-clarifai-node-backend.onrender.com/api/createBlog/generate-titles",
         {
           method: "POST",
           headers: {

@@ -32,7 +32,7 @@ export function ImageGenerator({ blogData, setBlogData }: ImageGeneratorProps) {
     setLoading(true);
     try {
       const response = await fetch(
-        "http://localhost:5000/api/createBlog/generate-image",
+        "https://aaas-labs-clarifai-node-backend.onrender.com/api/createBlog/generate-image",
         {
           method: "POST",
           headers: {

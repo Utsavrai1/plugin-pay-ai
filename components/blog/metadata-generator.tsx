@@ -32,7 +32,7 @@ export function MetadataGenerator({
     setLoading(true);
     try {
       const response = await fetch(
-        "http://localhost:5000/api/createBlog/generate-metadata",
+        "https://aaas-labs-clarifai-node-backend.onrender.com/api/createBlog/generate-metadata",
         {
           method: "POST",
           headers: {

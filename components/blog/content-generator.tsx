@@ -33,7 +33,7 @@ export function ContentGenerator({
     setLoading(true);
     try {
       const response = await fetch(
-        "http://localhost:5000/api/createBlog/generate-content",
+        "https://aaas-labs-clarifai-node-backend.onrender.com/api/createBlog/generate-content",
         {
           method: "POST",
           headers: {
