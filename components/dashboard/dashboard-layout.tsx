@@ -1,15 +1,25 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { Bell, Home, LayoutDashboard, LogOut, Menu, Moon, Sun, Users, PenTool } from "lucide-react"
-import { useTheme } from "next-themes"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import {
+  Bell,
+  Home,
+  LayoutDashboard,
+  LogOut,
+  Menu,
+  Moon,
+  Sun,
+  Users,
+  PenTool,
+} from "lucide-react";
+import { useTheme } from "next-themes";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,19 +27,19 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Bot } from "lucide-react"
+} from "@/components/ui/dropdown-menu";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Bot } from "lucide-react";
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname()
-  const { theme, setTheme } = useTheme()
-  const [isMounted, setIsMounted] = useState(false)
+  const pathname = usePathname();
+  const { theme, setTheme } = useTheme();
+  const [isMounted, setIsMounted] = useState(false);
 
   // Prevent hydration mismatch
   useEffect(() => {
-    setIsMounted(true)
-  }, [])
+    setIsMounted(true);
+  }, []);
 
   // Updated navigation with Blog Creator
   const navigation = [
@@ -38,7 +48,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
     { name: "Agents", href: "/dashboard/agents", icon: Users },
     { name: "AI Agents", href: "/dashboard/ai-agents", icon: Bot },
     { name: "Blog Creator", href: "/dashboard/blog", icon: PenTool },
-  ]
+  ];
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -55,7 +65,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
               <SheetContent side="left" className="w-72">
                 <div className="flex flex-col space-y-6">
                   <div className="flex items-center gap-2">
-                    <span className="font-bold text-xl">SalesBoost</span>
+                    <span className="font-bold text-xl">PluginPay AI</span>
                   </div>
                   <nav className="flex flex-col space-y-1">
                     {navigation.map((item) => (
@@ -63,7 +73,9 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                         key={item.name}
                         href={item.href}
                         className={`flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium ${
-                          pathname === item.href ? "bg-primary text-primary-foreground" : "hover:bg-muted"
+                          pathname === item.href
+                            ? "bg-primary text-primary-foreground"
+                            : "hover:bg-muted"
                         }`}
                       >
                         <item.icon className="h-5 w-5" />
@@ -75,7 +87,9 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
               </SheetContent>
             </Sheet>
             <Link href="/dashboard" className="flex items-center gap-2">
-              <span className="font-bold text-xl hidden md:inline-block">SalesBoost</span>
+              <span className="font-bold text-xl hidden md:inline-block">
+                PluginPay AI
+              </span>
             </Link>
             <nav className="hidden md:flex gap-6">
               {navigation.map((item) => (
@@ -83,7 +97,9 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                   key={item.name}
                   href={item.href}
                   className={`flex items-center gap-2 text-sm font-medium ${
-                    pathname === item.href ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                    pathname === item.href
+                      ? "text-primary"
+                      : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {item.name}
@@ -98,14 +114,25 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
               <span className="sr-only">Notifications</span>
             </Button>
             {isMounted && (
-              <Button variant="outline" size="icon" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-                {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              >
+                {theme === "dark" ? (
+                  <Sun className="h-5 w-5" />
+                ) : (
+                  <Moon className="h-5 w-5" />
+                )}
                 <span className="sr-only">Toggle theme</span>
               </Button>
             )}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                <Button
+                  variant="ghost"
+                  className="relative h-8 w-8 rounded-full"
+                >
                   <Avatar className="h-8 w-8">
                     <AvatarImage src="/placeholder.svg" alt="User" />
                     <AvatarFallback>JD</AvatarFallback>
@@ -136,7 +163,9 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                   key={item.name}
                   href={item.href}
                   className={`flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium ${
-                    pathname === item.href ? "bg-primary text-primary-foreground" : "hover:bg-muted"
+                    pathname === item.href
+                      ? "bg-primary text-primary-foreground"
+                      : "hover:bg-muted"
                   }`}
                 >
                   <item.icon className="h-5 w-5" />
@@ -149,5 +178,5 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
         <main className="flex-1 overflow-auto p-4 md:p-6">{children}</main>
       </div>
     </div>
-  )
+  );
 }

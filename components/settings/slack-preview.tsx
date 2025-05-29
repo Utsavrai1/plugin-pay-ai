@@ -1,13 +1,19 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 interface SlackPreviewProps {
-  enabled: boolean
-  leaderboardEnabled: boolean
-  productivityEnabled: boolean
-  channel: string
-  postTime: string
-  frequency: string
+  enabled: boolean;
+  leaderboardEnabled: boolean;
+  productivityEnabled: boolean;
+  channel: string;
+  postTime: string;
+  frequency: string;
 }
 
 export function SlackPreview({
@@ -20,26 +26,27 @@ export function SlackPreview({
 }: SlackPreviewProps) {
   // Format the time for display
   const formatTime = (timeString: string) => {
-    const [hours, minutes] = timeString.split(":")
-    const hour = Number.parseInt(hours)
-    const ampm = hour >= 12 ? "PM" : "AM"
-    const hour12 = hour % 12 || 12
-    return `${hour12}:${minutes} ${ampm}`
-  }
+    const [hours, minutes] = timeString.split(":");
+    const hour = Number.parseInt(hours);
+    const ampm = hour >= 12 ? "PM" : "AM";
+    const hour12 = hour % 12 || 12;
+    return `${hour12}:${minutes} ${ampm}`;
+  };
 
   // Get the day for display based on frequency
   const getDay = () => {
-    if (frequency === "daily") return "Today"
-    if (frequency === "weekly") return "This Week"
-    return "This Month"
-  }
+    if (frequency === "daily") return "Today";
+    if (frequency === "weekly") return "This Week";
+    return "This Month";
+  };
 
   return (
     <Card>
       <CardHeader>
         <CardTitle>Message Preview</CardTitle>
         <CardDescription>
-          Preview of what will be posted to {channel} at {formatTime(postTime)} {frequency}.
+          Preview of what will be posted to {channel} at {formatTime(postTime)}{" "}
+          {frequency}.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -52,12 +59,14 @@ export function SlackPreview({
             <div className="rounded-md border p-4">
               <div className="mb-4 flex items-center gap-2">
                 <Avatar className="h-8 w-8">
-                  <AvatarImage src="/placeholder.svg" alt="SalesBoost" />
+                  <AvatarImage src="/placeholder.svg" alt="PluginPay AI" />
                   <AvatarFallback>SB</AvatarFallback>
                 </Avatar>
                 <div>
-                  <div className="font-semibold">SalesBoost</div>
-                  <div className="text-xs text-muted-foreground">{getDay()}'s Sales Team Update</div>
+                  <div className="font-semibold">PluginPay AI</div>
+                  <div className="text-xs text-muted-foreground">
+                    {getDay()}'s Sales Team Update
+                  </div>
                 </div>
               </div>
 
@@ -92,7 +101,9 @@ export function SlackPreview({
 
               {productivityEnabled && (
                 <div>
-                  <h3 className="mb-2 font-semibold">📊 Productivity Summary</h3>
+                  <h3 className="mb-2 font-semibold">
+                    📊 Productivity Summary
+                  </h3>
                   <div className="space-y-1 text-sm">
                     <div className="flex justify-between">
                       <span>Total Calls:</span>
@@ -117,7 +128,7 @@ export function SlackPreview({
               <div className="mt-4 text-xs text-muted-foreground">
                 View full details in the{" "}
                 <a href="#" className="text-primary underline">
-                  SalesBoost Dashboard
+                  PluginPay AI Dashboard
                 </a>
               </div>
             </div>
@@ -125,5 +136,5 @@ export function SlackPreview({
         )}
       </CardContent>
     </Card>
-  )
+  );
 }

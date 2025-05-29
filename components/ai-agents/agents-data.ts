@@ -2,7 +2,8 @@ export const agentsData = [
   {
     id: "stats-producer",
     name: "Stats Producing Agent",
-    description: "Generates daily sales activity leaderboards and performance statistics for the team.",
+    description:
+      "Generates daily sales activity leaderboards and performance statistics for the team.",
     buttonText: "View Stats",
     buttonAction: "viewStats",
     status: "active" as const,
@@ -23,13 +24,15 @@ Team Summary:
 - Total Talktime: 6 min`,
     configuration: {
       title: "Stats Settings",
-      description: "Configure how the Stats Producing Agent generates and displays performance data.",
+      description:
+        "Configure how the Stats Producing Agent generates and displays performance data.",
     },
   },
   {
     id: "lead-prioritization",
     name: "Lead Prioritization Agent",
-    description: "Organizes and prioritizes leads by sales representative with deal amounts and status tracking.",
+    description:
+      "Organizes and prioritizes leads by sales representative with deal amounts and status tracking.",
     buttonText: "Review Leads",
     buttonAction: "reviewLeads",
     status: "active" as const,
@@ -52,7 +55,35 @@ Nithin David
 • 333 SAN RAFAEL via Charles Minyard | ($3500 | Sent - CSS)`,
     configuration: {
       title: "Lead Prioritization Settings",
-      description: "Configure how leads are organized and prioritized for each sales representative.",
+      description:
+        "Configure how leads are organized and prioritized for each sales representative.",
     },
   },
-]
+  {
+    id: "slack-invoice",
+    name: "Slack Invoice Agent",
+    description:
+      "Automatically generates and sends invoices through Slack, email, and SMS notifications.",
+    buttonText: "Generate Invoice",
+    buttonAction: "generateInvoice",
+    status: (() => {
+      // Check if configuration is complete to determine status
+      if (typeof window !== "undefined") {
+        const configStatus = localStorage.getItem("agentConfigurationStatus");
+        return configStatus === "complete"
+          ? ("active" as const)
+          : ("paused" as const);
+      }
+      return "paused" as const;
+    })(),
+    integrations: ["slack", "email", "sms"],
+    badges: ["Multi-channel", "Automated"],
+    icon: "bot",
+    exampleOutput: `Emailed to client@acme.com`,
+    configuration: {
+      title: "Invoice Agent Settings",
+      description:
+        "Configure Slack, email, and SMS credentials for automated invoice delivery.",
+    },
+  },
+];
